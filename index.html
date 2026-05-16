@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mid Average Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap)" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <h1>📚 Mid Average Calculator</h1>
+            
+            <div id="login-form" class="form-section">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email">
+                <input type="password" id="login-password" placeholder="Password">
+                <button onclick="login()">Login</button>
+                <p class="switch-text">New user? <a href="#" onclick="showRegister()">Register here</a></p>
+            </div>
+
+            <div id="register-form" class="form-section hidden">
+                <h2>Register</h2>
+                <input type="text" id="register-username" placeholder="Username">
+                <input type="email" id="register-email" placeholder="Email">
+                <input type="password" id="register-password" placeholder="Password">
+                <input type="password" id="register-confirm" placeholder="Confirm Password">
+                <button onclick="register()">Register</button>
+                <p class="switch-text">Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+            </div>
+
+            <div id="error-message" class="error hidden"></div>
+        </div>
+    </div>
+
+    <!-- Main App Page -->
+    <div id="main-page" class="page">
+        <header>
+            <h1>📚 Mid Average Calculator</h1>
+            <div class="user-info">
+                <span id="username-display"></span>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="app-container">
+            <!-- Left Sidebar - Semesters -->
+            <aside class="sidebar">
+                <h3>Semesters</h3>
+                <div class="semester-list">
+                    <button class="semester-btn active" data-sem="1">Semester 1</button>
+                    <button class="semester-btn" data-sem="2">Semester 2</button>
+                    <button class="semester-btn" data-sem="3">Semester 3</button>
+                    <button class="semester-btn" data-sem="4">Semester 4</button>
+                    <button class="semester-btn" data-sem="5">Semester 5</button>
+                    <button class="semester-btn" data-sem="6">Semester 6</button>
+                    <button class="semester-btn" data-sem="7">Semester 7</button>
+                    <button class="semester-btn" data-sem="8">Semester 8</button>
+                </div>
+            </aside>
+
+            <!-- Right Content - Tables -->
+            <main class="content">
+                <div class="mid-selector">
+                    <button class="mid-btn active" data-mid="1">Mid 1</button>
+                    <button class="mid-btn" data-mid="2">Mid 2</button>
+                    <button class="mid-btn" data-mid="total">Total Calculation</button>
+                </div>
+
+                <!-- Mid 1 Table -->
+                <div id="mid1-section" class="mid-section active">
+                    <h2>Mid 1 - Semester <span class="current-sem">1</span></h2>
+                    <div class="table-container">
+                        <table id="mid1-table">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Subject Name</th>
+                                    <th>Theory (15)</th>
+                                    <th>Objective (10)</th>
+                                    <th>Assignment (5)</th>
+                                    <th>Total (30)</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <button onclick="saveData()" class="save-btn">Save Mid 1</button>
+                </div>
+
+                <!-- Mid 2 Table -->
+                <div id="mid2-section" class="mid-section">
+                    <h2>Mid 2 - Semester <span class="current-sem">1</span></h2>
+                    <div class="table-container">
+                        <table id="mid2-table">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Subject Name</th>
+                                    <th>Theory (15)</th>
+                                    <th>Objective (10)</th>
+                                    <th>Assignment (5)</th>
+                                    <th>Total (30)</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <button onclick="saveData()" class="save-btn">Save Mid 2</button>
+                </div>
+
+                <!-- Total Calculation Table -->
+                <div id="total-section" class="mid-section">
+                    <h2>Final Calculation - Semester <span class="current-sem">1</span></h2>
+                    <p class="formula-info">Formula: (Max(Mid1, Mid2) × 80%) + (Min(Mid1, Mid2) × 20%)</p>
+                    <div class="table-container">
+                        <table id="total-table">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Subject Name</th>
+                                    <th>Mid 1 Total</th>
+                                    <th>Mid 2 Total</th>
+                                    <th>Max (80%)</th>
+                                    <th>Min (20%)</th>
+                                    <th>Final Score</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="overall-average">
+                        <h3>Semester Average: <span id="semester-avg">0.00</span></h3>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
